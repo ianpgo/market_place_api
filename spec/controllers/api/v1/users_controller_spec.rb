@@ -55,11 +55,13 @@ describe Api::V1::UsersController do
   end
 
    describe "PUT/PATCH #update" do
-
+    before(:each) do
+    @user = FactoryGirl.create :user
+    request.headers['Authorization'] = @user.auth_token
+  end
     context "when is successfully updated" do
       before(:each) do
-        @user = FactoryGirl.create :user
-        patch :update, { id: @user.id,
+      patch :update, { id: @user.id,
                          user: { email: "newmail@example.com" } }
       end
 
