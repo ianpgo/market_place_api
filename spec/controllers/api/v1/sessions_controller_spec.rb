@@ -4,9 +4,9 @@ describe Api::V1::SessionsController do
 
   describe "POST #create" do
 
-   before(:each) do
-    @user = FactoryGirl.create :user
-   end
+    before(:each) do
+      @user = FactoryGirl.create :user
+    end
 
     context "when the credentials are correct" do
 
@@ -36,6 +36,7 @@ describe Api::V1::SessionsController do
 
       it { should respond_with 422 }
     end
+
   end
 
   describe "DELETE #destroy" do
@@ -49,4 +50,6 @@ describe Api::V1::SessionsController do
     it { should respond_with 204 }
 
   end
+
+
 end
