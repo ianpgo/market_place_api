@@ -6,7 +6,10 @@ class User < ActiveRecord::Base
 
   #Callback
   before_create :generate_authentication_token!
-  
+
+  #Relationships
+  has_many :products, dependent: :destroy
+
   #Validations
   validates :auth_token, uniqueness: true
 
