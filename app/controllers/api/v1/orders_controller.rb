@@ -14,10 +14,11 @@ class Api::V1::OrdersController < ApplicationController
 		order = current_user.orders.build(order_params)
 
 		if order.save
-			render json: order, status: 201, location: [:api, current_user, order]
-		else
-			render json: {errors: order.errors }, status: 422
-		end
+    		OrderMailer.send_confirmation(order).deliver
+    		render json: order, status: 201, location: [:api, current_user, order]
+  		else
+    		render json: { errors: order.errors }, status: 422
+  		end
 	end
 
 	private
